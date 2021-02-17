@@ -32,11 +32,10 @@ print(f'This is the word that you need to guess: {to_guess}!\n')
 # Show the available letters for the guess
 print(f"Choose one from the letter presented:\n {letters_available}")
 
-# Set lives and tries for the game
-lives = 3
+# Set tries for the game
 tries = 7
 
-while tries!= 0 and lives != 0:
+while tries!= 0:
 
     # Ask for users first guess
     user_guess = str(input("\nWhich letter would you like to try?: ")).upper()
@@ -55,20 +54,17 @@ while tries!= 0 and lives != 0:
         for indx , letter in enumerate(word_to_guess):
             if letter == user_guess:
                 to_guess[indx] = user_guess
-        tries -= 1 # subtracts one try from total tries
                
     else: # exectues if the word or letter was wrong
         print(f"\nUnfortunately letter '{user_guess}' is not in the word")
-        lives -= 1
         tries -= 1
-        print(f"You have {lives} lives remaining")
 
     
     letters_available.remove(user_guess) # removes the guessed letter from list
     letters_used.append(user_guess) # adds to the list of tried letters
     
     # Print stats for the game so far
-    print(f"You have got {tries} attempts and {lives} lives left")
+    print(f"You have got {tries} attempts left")
     print(f"To guess: {to_guess}")
     print(f"\nThese are letter that you have available: {letters_available}")
     print(f"These are letters that you have already tried/used: {letters_used}")
