@@ -4,6 +4,7 @@ import random
 
 
 print("\nI see you wanna play a game! Let's get on with it then!\n")
+# Ask for players name
 name = str(input("What is your name?:  (it better not be Tony or Ezekiel) "))
 name = name.title()
 
@@ -18,46 +19,55 @@ alphabet = string.ascii_uppercase
 # List for guessed letters
 letters_used = []
 
-# Get the word to guess
-# word_to_guess = random.choice(list_of_words).upper()
-word_to_guess = "ALPHABET"
+# Get the word from words.py, list_of_words
+word_to_guess = random.choice(list_of_words).upper()
+# A list at len of the word to be guessed
 to_guess = list('_' * len(word_to_guess))
+# Add alphabet letters to a list to show later
 letters_available = list(alphabet)
 
 print(f"\nTime for your first guess {name}!")
+# Show the word that needs to be guessed as a lsit of lines
 print(f'This is the word that you need to guess: {to_guess}!\n')
+# Show the available letters for the guess
 print(f"Choose one from the letter presented:\n {letters_available}")
 
+# Set lives and tries for the game
 lives = 3
 tries = 7
 
 while tries!= 0 and lives != 0:
 
+    # Ask for users first guess
     user_guess = str(input("\nWhich letter would you like to try?: ")).upper()
 
-    if user_guess == word_to_guess:
+
+    if user_guess == word_to_guess: # checks if the entered word is correct
+
         print(f"Congratulations, you have guessed the right word! ")
         print(f"The word to guess was: {word_to_guess}")
         break
 
-    elif user_guess in word_to_guess:
+    elif user_guess in word_to_guess: # check if a letter is in the word
+
         print(f"You were right, '{user_guess}' is in the word!\n")
+        # find the index/es of the letter in the word
         for indx , letter in enumerate(word_to_guess):
             if letter == user_guess:
                 to_guess[indx] = user_guess
-        tries -= 1
+        tries -= 1 # subtracts one try from total tries
                
-    else:
+    else: # exectues if the word or letter was wrong
         print(f"\nUnfortunately letter '{user_guess}' is not in the word")
         lives -= 1
         tries -= 1
         print(f"You have {lives} lives remaining")
 
     
-    letters_available.remove(user_guess)
-    letters_used.append(user_guess)
+    letters_available.remove(user_guess) # removes the guessed letter from list
+    letters_used.append(user_guess) # adds to the list of tried letters
     
-
+    # Print stats for the game so far
     print(f"You have got {tries} attempts and {lives} lives left")
     print(f"To guess: {to_guess}")
     print(f"\nThese are letter that you have available: {letters_available}")
