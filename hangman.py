@@ -20,8 +20,7 @@ alphabet = string.ascii_uppercase
 letters_used = []
 
 # Get the word from words.py, list_of_words
-# word_to_guess = random.choice(list_of_words).upper()
-word_to_guess = 'ALPHABET'
+word_to_guess = random.choice(list_of_words).upper()
 # A list at len of the word to be guessed
 to_guess = list('_' * len(word_to_guess))
 # Add alphabet letters to a list to show later
@@ -80,3 +79,4 @@ while tries!= 0:
     print(f"\nThese are letter that you have available: {letters_available}")
     print(f"These are letters that you have already tried/used: {letters_used}")
 
+    
