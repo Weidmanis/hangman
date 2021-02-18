@@ -20,7 +20,8 @@ alphabet = string.ascii_uppercase
 letters_used = []
 
 # Get the word from words.py, list_of_words
-word_to_guess = random.choice(list_of_words).upper()
+# word_to_guess = random.choice(list_of_words).upper()
+word_to_guess = 'ALPHABET'
 # A list at len of the word to be guessed
 to_guess = list('_' * len(word_to_guess))
 # Add alphabet letters to a list to show later
@@ -54,12 +55,22 @@ while tries!= 0:
         for indx , letter in enumerate(word_to_guess):
             if letter == user_guess:
                 to_guess[indx] = user_guess
+        
+        # check if the word has not been guessed
+        if word_to_guess == "".join(to_guess):
+            print(f"Congratulations, you have guessed the right word! ")
+            print(f"The word to guess was: {word_to_guess}")
+            break
                
     else: # exectues if the word or letter was wrong
         print(f"\nUnfortunately letter '{user_guess}' is not in the word")
         tries -= 1
 
-    
+    if tries == 0:
+        print(f"\nUnfortunately you have lost {name}")
+        print(f"The word to guess was: {word_to_guess}")
+
+
     letters_available.remove(user_guess) # removes the guessed letter from list
     letters_used.append(user_guess) # adds to the list of tried letters
     
@@ -69,5 +80,3 @@ while tries!= 0:
     print(f"\nThese are letter that you have available: {letters_available}")
     print(f"These are letters that you have already tried/used: {letters_used}")
 
-print(f"\nUnfortunately you have lost {name}")
-print(f"The word to guess was: {word_to_guess}")
