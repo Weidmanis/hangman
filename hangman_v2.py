@@ -24,7 +24,11 @@ def hangman(players_name):
 
     while tries != 0:
 
-        print(f"You have {tries} tries left")
+        if tries == 1:
+            print(f"{players_name}, be careful now, its your last try! ")
+        else:
+            print(f"You have {tries} tries left")
+        
         print(f"\nThe word to guess is {to_guess}")
         print(f"Use these letters for your guess: {let_available}.")
         print(f"You have tried these letters so far: {let_used}.")
@@ -38,11 +42,16 @@ def hangman(players_name):
         elif player_guess in word_to_guess:
             to_guess = in_word(player_guess, word_to_guess, to_guess)
             print(f"\nYou were right '{player_guess}' is in the word.")
-            #NEED TO CHECK IF THE WORD IS NOT COMPLETE AND CONGRATULATE THE PLAYER
+
+            if word_to_guess == "".join(to_guess):
+                print(f"Congratulations you have guess the word!")
+                print(f"Word to guess was: {word_to_guess}.")
+
         else:
             print(f"\nLetter '{player_guess}' is not in the word, try again.")
             tries -= 1
 
+            
         let_available.remove(player_guess)
         let_used.append(player_guess)
         
